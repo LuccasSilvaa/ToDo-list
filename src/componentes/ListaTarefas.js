@@ -113,6 +113,18 @@ export default class ListaTarefas extends React.Component{
     tarefa:""
   })
  }
+
+ enter = (e) =>{
+  
+  if(this.state.tarefa.length > 0 && e.key === "Enter")
+  this.setState({
+    listaTarefas: this.state.listaTarefas.concat({
+      tarefa: this.state.tarefa,
+      id: Date.now()
+    }),
+    tarefa:""
+  })
+ }
   remover = (id) => {
      this.setState({
       listaTarefas: this.state.listaTarefas.filter((item) => {
@@ -129,6 +141,7 @@ export default class ListaTarefas extends React.Component{
       <h1>Lista de tarefas</h1>
       <Add>
       <input
+      onKeyPress={this.enter}
       placeholder="Insira uma tarefa"
       onChange={this.bucarTarefas} 
       value={this.state.tarefa}/>
